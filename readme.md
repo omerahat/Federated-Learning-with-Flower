@@ -40,8 +40,8 @@ pip install -r requirements.txt
 
 ## Running the Project
 To run the project, navigate to the `code` directory using the appropriate command for your operating system:
-- **Linux/Mac:** `cd code`
 - **Windows:** `cd code`
+  
 Then, execute the following command:
 ```bash
 python -m main
