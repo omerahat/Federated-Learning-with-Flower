@@ -64,6 +64,4 @@ The CNN model (`model.py`) consists of convolutional, pooling, and fully connect
 - [Flower](https://flower.ai) for federated learning framework
 - [PyTorch](https://pytorch.org/) for deep learning support
 
-## License
-This project is licensed under the MIT License.
 
