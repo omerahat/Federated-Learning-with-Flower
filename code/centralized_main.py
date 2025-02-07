@@ -19,5 +19,6 @@ def run_centralized_training():
     # Final test on the separate test set
     loss, accuracy = test(net, testloader)
     print(f"Final test set performance:\n\tloss {loss}\n\taccuracy {accuracy}")
+    return accuracy
 
 
