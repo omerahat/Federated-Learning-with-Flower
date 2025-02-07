@@ -16,6 +16,8 @@ t4 = time.time()
 if history is not None and "accuracy" in history.metrics:
      final_accuracy = history.metrics["accuracy"][-1]
      print("Final aggregated accuracy:", final_accuracy)
+else:
+     final_accuracy = None
 
 print(f"\nCentralized training took {t2-t1:.4f} seconds")
 print(centralized_acc)

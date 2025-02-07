@@ -2,7 +2,7 @@ from typing import List, Tuple  # Type annotations
 from flwr.server.strategy import FedAvg  # Federated Averaging strategy
 from flwr.common import Metrics, Context  # Metric tracking and server context
 from flwr.server import ServerConfig, ServerAppComponents  # Server setup
-
+from config import NUM_ROUNDS
 
 def weighted_average(metrics: List[Tuple[int, Metrics]]) -> Metrics:
      # Multiply accuracy of each client by number of examples used
@@ -22,15 +22,15 @@ def server_fn(context: Context) -> ServerAppComponents:
 
      # Create FedAvg strategy
      strategy = FedAvg(
-          fraction_fit=1.0,
-          fraction_evaluate=0.5,
-          min_fit_clients=10,
-          min_evaluate_clients=5,
-          min_available_clients=10,
+          fraction_fit=0.5,
+          fraction_evaluate=0.6,
+          min_fit_clients=25,
+          min_evaluate_clients=30,
+          min_available_clients=50,
           evaluate_metrics_aggregation_fn=weighted_average,  # <-- pass the metric aggregation function     
      )
 
      # Configure the server for 5 rounds of training
-     config = ServerConfig(num_rounds=5)
+     config = ServerConfig(num_rounds=NUM_ROUNDS)
 
      return ServerAppComponents(strategy=strategy, config=config)
