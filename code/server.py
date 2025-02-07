@@ -22,9 +22,9 @@ def server_fn(context: Context) -> ServerAppComponents:
 
      # Create FedAvg strategy
      strategy = FedAvg(
-          fraction_fit=0.5,
+          fraction_fit=1.0,
           fraction_evaluate=0.6,
-          min_fit_clients=25,
+          min_fit_clients=50,
           min_evaluate_clients=30,
           min_available_clients=50,
           evaluate_metrics_aggregation_fn=weighted_average,  # <-- pass the metric aggregation function     

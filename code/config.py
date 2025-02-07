@@ -1,7 +1,7 @@
 import torch
-
+CENTRALIZED_EPOCH = 25
 NUM_CLIENTS = 50
-NUM_ROUNDS = 20
+NUM_ROUNDS = 4
 BATCH_SIZE = 32
 
 DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")

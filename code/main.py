@@ -1,10 +1,10 @@
 from federated_main import run_federated_learning  
 from centralized_main import run_centralized_training
 import time
+from config import CENTRALIZED_EPOCH
 
-epochs = 20
 t1 = time.time()
-centralized_acc =  run_centralized_training(epochs=epochs)
+centralized_acc =  run_centralized_training(epochs=CENTRALIZED_EPOCH)
 t2 = time.time()
 
 print("\n---------------------------------\n")
