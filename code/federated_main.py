@@ -14,7 +14,7 @@ from flwr.client import Client, ClientApp
 from model import Net
 from flwr.common import Metrics, Context
 from data_loader import load_datasets
-
+from flwr.client.mod import adaptiveclipping_mod
 
 def client_fn(context: Context) -> Client:
     """Create a Flower client representing a single organization."""
@@ -37,7 +37,7 @@ def client_fn(context: Context) -> Client:
 def run_federated_learning():
     """Wrapper function to run the Flower simulation."""
     # Create the ClientApp and ServerApp
-    client = ClientApp(client_fn=client_fn)
+    client = ClientApp(client_fn=client_fn, mods=[adaptiveclipping_mod])
     server = ServerApp(server_fn=server_fn)
 
     # Run the Flower simulation
@@ -47,4 +47,5 @@ def run_federated_learning():
         num_supernodes=NUM_CLIENTS,
         backend_config=BACKEND_CONFIG,
     )
+
 
