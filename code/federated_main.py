@@ -46,3 +46,5 @@ def run_federated_learning():
         num_supernodes=load_config()["NUM_CLIENTS"],
         backend_config=BACKEND_CONFIG,
     )
+
+

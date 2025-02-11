@@ -14,7 +14,7 @@ csv_cols = ["NUM_CLIENTS", "NUM_ROUNDS", "BATCH_SIZE", "NOISE_MULTIPLIER", "EVAL
 
 def weighted_average(metrics: List[Tuple[int, Metrics]]) -> Metrics:
     config_data= load_config()
-
+    print("weighted_average function called!")
     # Multiply accuracy of each client by number of examples used
     accuracies = [num_examples * m["accuracy"] for num_examples, m in metrics]
     examples = [num_examples for num_examples, _ in metrics]
@@ -45,7 +45,7 @@ def server_fn(context: Context) -> ServerAppComponents:
         fraction_fit=config_data["FIT_RATIO"],
         fraction_evaluate=config_data["EVAL_RATIO"],
         min_fit_clients=int(config_data["FIT_RATIO"] * config_data["NUM_CLIENTS"]),
-        min_evaluate_clients=int(config_data["EVAL_RATIO"] * config_data["NUM_CLIENTS"]),
+        min_evaluate_clients = max(1, int(config_data["EVAL_RATIO"] * config_data["NUM_CLIENTS"])),
         min_available_clients=int(config_data["NUM_CLIENTS"]),
         evaluate_metrics_aggregation_fn=weighted_average,  # <-- pass the metric aggregation function     
     )

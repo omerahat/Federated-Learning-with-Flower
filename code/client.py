@@ -27,5 +27,6 @@ class FlowerClient(NumPyClient):
      def evaluate(self, parameters, config):
           set_parameters(self.net, parameters)
           loss, accuracy = test(self.net, self.valloader)
+          print("Evaluation accuracy:", accuracy)
           return float(loss), len(self.valloader), {"accuracy": float(accuracy)}
 
