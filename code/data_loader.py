@@ -2,11 +2,13 @@ import torch
 from torch.utils.data import DataLoader  # DataLoader for batch processing
 from torchvision import transforms  # Image transformations
 from flwr_datasets import FederatedDataset  # Ensure this is correctly imported
-from config import NUM_CLIENTS, BATCH_SIZE
+from config_manager import load_config
+
 
 
 def load_datasets(partition_id: int):
-    fds = FederatedDataset(dataset="cifar10", partitioners={"train": NUM_CLIENTS})
+    config_data= load_config()
+    fds = FederatedDataset(dataset="cifar10", partitioners={"train": config_data["NUM_CLIENTS"]})
     partition = fds.load_partition(partition_id)
     # Divide data on each node: 80% train, 20% test
     partition_train_test = partition.train_test_split(test_size=0.2, seed=42)
@@ -24,10 +26,10 @@ def load_datasets(partition_id: int):
     # Create train/val for each partition and wrap it into DataLoader
     partition_train_test = partition_train_test.with_transform(apply_transforms)
     trainloader = DataLoader(
-        partition_train_test["train"], batch_size=BATCH_SIZE, shuffle=True
+        partition_train_test["train"], batch_size=config_data["BATCH_SIZE"], shuffle=True
     )
-    valloader = DataLoader(partition_train_test["test"], batch_size=BATCH_SIZE)
+    valloader = DataLoader(partition_train_test["test"], batch_size=config_data["BATCH_SIZE"])
     testset = fds.load_split("test").with_transform(apply_transforms)
-    testloader = DataLoader(testset, batch_size=BATCH_SIZE)
+    testloader = DataLoader(testset, batch_size=config_data["BATCH_SIZE"])
     return trainloader, valloader, testloader
 

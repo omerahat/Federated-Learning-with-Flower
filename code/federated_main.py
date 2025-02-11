@@ -1,13 +1,9 @@
-import sys
-import os
-sys.path.append(os.path.abspath(os.path.dirname(__file__)))  # Add this line
-
 from collections import OrderedDict
 from typing import List, Tuple
 
 from flwr.server import ServerApp
 from flwr.simulation import run_simulation
-from config import NUM_CLIENTS, BACKEND_CONFIG, DEVICE
+from config import DEVICE, BACKEND_CONFIG
 from client import FlowerClient
 from server import server_fn
 from flwr.client import Client, ClientApp
@@ -15,6 +11,7 @@ from model import Net
 from flwr.common import Metrics, Context
 from data_loader import load_datasets
 from flwr.client.mod import adaptiveclipping_mod
+from config_manager import load_config
 
 def client_fn(context: Context) -> Client:
     """Create a Flower client representing a single organization."""
@@ -35,6 +32,8 @@ def client_fn(context: Context) -> Client:
     return FlowerClient(net, trainloader, valloader).to_client()
 
 def run_federated_learning():
+
+    
     """Wrapper function to run the Flower simulation."""
     # Create the ClientApp and ServerApp
     client = ClientApp(client_fn=client_fn, mods=[adaptiveclipping_mod])
@@ -44,8 +43,6 @@ def run_federated_learning():
     run_simulation(
         server_app=server,
         client_app=client,
-        num_supernodes=NUM_CLIENTS,
+        num_supernodes=load_config()["NUM_CLIENTS"],
         backend_config=BACKEND_CONFIG,
     )
-
-
