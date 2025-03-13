@@ -12,7 +12,7 @@ EVAL_RATIO_VALUES = [0.3]
 """
 update_config("CENTRALIZED_EPOCHS", 100)
 
-run_centralized_training() !!!!!!!!!
+# run_centralized_training()
 
 # Load initial configuration
 config = load_config()
