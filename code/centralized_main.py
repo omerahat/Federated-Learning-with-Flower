@@ -4,7 +4,7 @@ from model import Net
 from config import DEVICE
 from config_manager import load_config
 
-csv_file = r'C:\Users\ahato\Desktop\flowerProject\log\centralized.csv'
+csv_file = r'centralized_linux.csv'
 
 
 

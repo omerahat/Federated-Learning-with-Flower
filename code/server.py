@@ -9,7 +9,7 @@ from flwr.server.strategy.dp_adaptive_clipping import DifferentialPrivacyClientS
 
 
 # CSV File Configuration
-csv_file = r'C:\Users\ahato\Desktop\flowerProject\log\federated_acc.csv'
+csv_file = r'federated_acc_linux.csv'
 csv_cols = ["NUM_CLIENTS", "NUM_ROUNDS", "BATCH_SIZE", "NOISE_MULTIPLIER", "EVAL_RATIO", "ACCURACY"]
 
 def weighted_average(metrics: List[Tuple[int, Metrics]]) -> Metrics:

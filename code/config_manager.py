@@ -1,6 +1,6 @@
 import json
 
-CONFIG_PATH = "config.json" 
+CONFIG_PATH = "config.json"
 
 def load_config(path=CONFIG_PATH):
      """Load configuration from a JSON file."""
@@ -14,4 +14,3 @@ def update_config(key, value, path=CONFIG_PATH):
      config[key] = value
      with open(path, "w") as f:
           json.dump(config, f, indent=4)
-

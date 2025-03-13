@@ -1,9 +1,9 @@
 {
     "CENTRALIZED_EPOCHS": 100,
-    "NUM_CLIENTS": 2,
-    "NUM_ROUNDS": 2,
-    "BATCH_SIZE": 128,
-    "NOISE_MULTIPLIER": 1.1,
-    "EVAL_RATIO": 0.3,
+    "NUM_CLIENTS": 3,
+    "NUM_ROUNDS": 10,
+    "BATCH_SIZE": 64,
+    "NOISE_MULTIPLIER": 4,
+    "EVAL_RATIO": 0.8,
     "FIT_RATIO": 1.0
 }

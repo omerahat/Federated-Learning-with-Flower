@@ -3,7 +3,6 @@ from centralized_main import run_centralized_training
 from config_manager import update_config, load_config
 import time
 import csv
-
 """
 NUM_CLIENTS_VALUES = [2]
 NUM_ROUNDS_VALUES = [2]
@@ -18,20 +17,29 @@ update_config("CENTRALIZED_EPOCHS", 100)
 config = load_config()
 
 # Define different parameter values to iterate over
-NUM_CLIENTS_VALUES = [2, 5, 20, 50, 100, 200]
-NUM_ROUNDS_VALUES = [1, 5, 10, 20,  50, 100]
-BATCH_SIZE_VALUES = [32, 64, 128, 256]
+NUM_CLIENTS_VALUES = [3]
+NUM_ROUNDS_VALUES = [10]
+BATCH_SIZE_VALUES = [64]
 NOISE_MULTIPLIER_VALUES = [0.1, 0.4, 1.1, 1.5, 2.5, 4]
+EVAL_RATIO_VALUES = [0.8]
+"""
+# Define different parameter values to iterate over
+NUM_CLIENTS_VALUES = [2]
+NUM_ROUNDS_VALUES = [10]
+BATCH_SIZE_VALUES = [32]
+NOISE_MULTIPLIER_VALUES = [1.5, 2.5, 4]
 EVAL_RATIO_VALUES = [0.1, 0.3, 0.75, 0.9, 1]
-
-
-csv_file_exec = r'C:\Users\ahato\Desktop\flowerProject\log\execution_time.csv'
+"""
+csv_file_exec = r'execution_time_linux.csv'
+"""
 csv_cols_exec = ["NUM_CLIENTS", "NUM_ROUNDS", "BATCH_SIZE", "NOISE_MULTIPLIER", "EVAL_RATIO", "EXECUTION_TIME"]
 
 
 with open(csv_file_exec, 'a', newline='') as f:  # ← **Fix: newline=''**
     writer = csv.writer(f)
     writer.writerow(csv_cols_exec)
+
+ """
 
 
 # Update configuration for each combination and run learning
