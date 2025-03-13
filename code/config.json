@@ -3,7 +3,7 @@
     "NUM_CLIENTS": 3,
     "NUM_ROUNDS": 10,
     "BATCH_SIZE": 64,
-    "NOISE_MULTIPLIER": 4,
+    "NOISE_MULTIPLIER": 0.1,
     "EVAL_RATIO": 0.8,
     "FIT_RATIO": 1.0
 }
